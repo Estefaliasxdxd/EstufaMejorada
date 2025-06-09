@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barra de Inversión</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #d0f0e0, #e0f0ff, #f0e0ff);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }@keyframes gradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 600px;
+}
+
+h1 {
+  text-align: center;
+  color: #4b4b4b;
+}
+
+.progress-container {
+  position: relative;
+  background-color: #eee;
+  border-radius: 30px;
+  height: 40px;
+  width: 100%;
+  margin: 30px 0;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #a2e3c4, #a2d3ff, #d3a2ff);
+  height: 100%;
+  border-radius: 30px;
+  transition: width 0.4s ease;
+  text-align: right;
+  padding-right: 15px;
+  color: #fff;
+  font-weight: bold;
+  line-height: 40px;
+}
+
+.milestones {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #555;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mi Progreso de Inversión</h1>
+    <label for="monto">Ingresá tu monto invertido ($):</label>
+    <input type="number" id="monto" min="0" max="1200000" value="50000" onchange="actualizarBarra()"><div class="progress-container">
+  <div class="progress-bar" id="barra">4.2%</div>
+</div>
+
+<div class="milestones">
+  <span>$0</span>
+  <span>$100K</span>
+  <span>$200K</span>
+  <span>$300K</span>
+  <span>$400K</span>
+  <span>$500K</span>
+  <span>$600K</span>
+  <span>$700K</span>
+  <span>$800K</span>
+  <span>$900K</span>
+  <span>$1M</span>
+  <span>$1.2M</span>
+</div>
+
+  </div>  <script>
+    function actualizarBarra() {
+      const input = document.getElementById("monto");
+      const barra = document.getElementById("barra");
+      const max = 1200000;
+      let valor = parseFloat(input.value);
+      if (isNaN(valor)) valor = 0;
+      if (valor > max) valor = max;
+      if (valor < 0) valor = 0;
+      const porcentaje = (valor / max) * 100;
+      barra.style.width = porcentaje + "%";
+      barra.textContent = porcentaje.toFixed(1) + "%";
+    }
+
+    actualizarBarra();
+  </script></body>
+</html>
